@@ -2,7 +2,7 @@ public class App{
     public static void main(String[] args){
         String comando = " ";
         comando = args[0];
-        List list = new List();
+        TaskList lista = new TaskList();
         String desc = "";
         int id = 0;
 
@@ -13,9 +13,8 @@ public class App{
                 for(int i = 2; i<args.length; i++){ //Dessa forma adiciona todo o texto restante do arg na String desc
                     desc = desc + " " + args[i];
                 }
-
-                Task tempT = new Task(desc);
-                list.add(tempT);
+                Task tempT = new Task(desc, lista.getAvailableID());
+                lista.add(tempT);
                 break;
             case "update":
                 id = getId(args);
@@ -23,19 +22,19 @@ public class App{
                 for(int i = 3; i<args.length; i++){
                     desc = desc + " " + args[i];
                 }
-                list.update(id, desc);
+                lista.update(id, desc);
                 break;
             case "delete":
                 id = getId(args);
-                list.delete(id);
+                lista.delete(id);
                 break;
             case "mark-in-progress":
                 id = getId(args);
-                list.markinprogress(id);
+                lista.markinprogress(id);
                 break;
             case "mark-done":
                 id = getId(args);
-                list.markdone(id);
+                lista.markdone(id);
                 break;
             case "list":
                 if(args.length>1){
@@ -50,7 +49,7 @@ public class App{
                         //Implementar in-progress
                     }
                 }else{
-                    list.list();
+                    lista.list();
                 }
                 break;
             default:
