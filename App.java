@@ -40,16 +40,16 @@ public class App{
                 if(args.length>1){
                     desc = args[1];
                     if(desc.equals("done")){
-                        //Implementar done
+                        lista.list("done");
                     }
                     if(desc.equals("todo")){
-                        //Implementar todo
+                        lista.list("todo");
                     }
                     if(desc.equals("in-progress")){
-                        //Implementar in-progress
+                        lista.list("in-progress");
                     }
                 }else{
-                    lista.list();
+                    lista.list("all");;
                 }
                 break;
             default:

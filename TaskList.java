@@ -75,9 +75,39 @@ public class TaskList {
         return 1;
     }
 
-    public int list(){
-        System.out.println("list");
-        return 1;
+    public void list(String status){
+        switch(status){
+            case "all":
+                for(String l:lista){
+                    String[] parts = l.split("\\|");
+                    System.out.println(parts[1]);
+                }
+                break;
+            case "todo":
+                for(String l:lista){
+                    String[] parts = l.split("\\|");
+                    if(parts[2].equals("0")){
+                        System.out.println(parts[1]);
+                    }
+                }
+                break;
+            case "in-progress":
+                for(String l:lista){
+                    String[] parts = l.split("\\|");
+                    if(parts[2].equals("1")){
+                        System.out.println(parts[1]);
+                    }
+                }
+                break; 
+            case "done":
+                for(String l:lista){
+                    String[] parts = l.split("\\|");
+                    if(parts[2].equals("2")){
+                        System.out.println(parts[1]);
+                    }
+                }
+                break;
+        }
     }
 
 }
