@@ -70,34 +70,60 @@ public class TaskList {
     }
 
     public int update(int id, String description){ //retorna 1 caso tenha tido sucesso, e 0 caso contrário
-        JSONObject obj = arrayTasks.getJSONObject(id-1);
-        obj.put("description", description);
-        arrayTasks.put(id, obj);
-        writeFile();
-        return 1;
+        JSONObject objTemp = new JSONObject();
+        for(int i = 0; i<arrayTasks.length(); i++){
+            objTemp=arrayTasks.getJSONObject(i);
+            if(objTemp.getInt("id") == id){
+                objTemp.put("description", description);
+                arrayTasks.put(i, objTemp);
+                writeFile();
+                return 1;
+            }
+        }
+        //JSONObject obj = arrayTasks.getJSONObject(id-1);
+        return 0;
     }
 
     public int delete(int id){ //retorna 1 caso tenha tido sucesso, e 0 caso contrário
-        System.out.println("delete");
-        return 1;
+        JSONObject objTemp = new JSONObject();
+        for(int i = 0; i<arrayTasks.length(); i++){
+            objTemp=arrayTasks.getJSONObject(i);
+            if(objTemp.getInt("id") == id){
+                arrayTasks.remove(i);
+                writeFile();
+                return 1;
+            }
+        }
+        
+        return 0;
     }
 
     public int markinprogress(int id){
-        System.out.println("markinprogress");
-        JSONObject obj = arrayTasks.getJSONObject(id-1);
-        obj.put("status", 1);
-        arrayTasks.put(id, obj);
-        writeFile();
-        return 1;
+        JSONObject objTemp = new JSONObject();
+        for(int i = 0; i<arrayTasks.length(); i++){
+            objTemp=arrayTasks.getJSONObject(i);
+            if(objTemp.getInt("id") == id){
+                objTemp.put("status", 1);
+                arrayTasks.put(i, objTemp);   
+                writeFile();
+                return 1;
+            }
+        }
+        return 0;
     }
 
     public int markdone(int id){
-        System.out.println("markdone");
-        JSONObject obj = arrayTasks.getJSONObject(id-1);
-        obj.put("status", 2);
-        arrayTasks.put(id, obj);
-        writeFile();
-        return 1;
+        JSONObject objTemp = new JSONObject();
+        for(int i = 0; i<arrayTasks.length(); i++){
+            objTemp=arrayTasks.getJSONObject(i);
+            if(objTemp.getInt("id") == id){
+                objTemp.put("status", 2);
+                arrayTasks.put(i, objTemp);   
+                writeFile();
+                return 1;
+            }
+        }
+        return 0;
     }
 
     public void list(String status){
