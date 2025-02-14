@@ -41,7 +41,14 @@ public class App{
                     desc = args[1];
                     if(desc.equals("done")){
                         lista.list("done");
-                    }
+                    } else if(desc.equals("todo")){
+                        lista.list("todo");
+                      } else if(desc.equals("in-progress")){
+                            lista.list("in-progress");
+                        } else{
+                            System.out.println("Insira um comando válido: add, update, delete, list, list todo, list in-progress, list done");
+                        }
+                    
                     if(desc.equals("todo")){
                         lista.list("todo");
                     }
@@ -53,7 +60,7 @@ public class App{
                 }
                 break;
             default:
-                System.out.println("Insira um comando válido: add, update, delete, list mark-in-progress, list mark-done, list");
+                System.out.println("Insira um comando válido: add, update, delete, list, list todo, list in-progress, list done");
                 break;
         }
 
