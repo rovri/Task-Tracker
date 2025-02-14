@@ -55,26 +55,25 @@ public class TaskList {
         taskNew.put("createdAt", task.getCreatedAt());
         taskNew.put("updatedAt", task.getUpdatedAt());
         arrayTasks.put(taskNew);
+        writeFile();
+        return 1;  
+    }
+
+    private void writeFile(){ //escreve o array JSON no arquivo lista.json
         try{
             BufferedWriter writer = new BufferedWriter(new FileWriter("lista.json"));
             writer.write(arrayTasks.toString());
             writer.close();
-            //for(String l:lista){
-            //    writer.write(l+"\n");
-            //}
-            //writer.write(task.getId()+"|"+task.getDescription()+"|"+task.getStatus()+"|"+task.getCreatedAt()+"|"+task.getUpdatedAt());
-            //writer.close();
-            return 1;
         }catch(IOException e){
             e.printStackTrace();
-            return 0;
         }
-
-        
     }
 
     public int update(int id, String description){ //retorna 1 caso tenha tido sucesso, e 0 caso contrário
-        System.out.println("update");
+        JSONObject obj = arrayTasks.getJSONObject(id-1);
+        obj.put("description", description);
+        arrayTasks.put(id, obj);
+        writeFile();
         return 1;
     }
 
