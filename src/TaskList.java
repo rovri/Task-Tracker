@@ -1,17 +1,12 @@
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import org.json.JSONObject;
 import org.json.JSONException;
 import org.json.JSONArray;
-
 
 public class TaskList {
     //List<String> lista = new ArrayList<>();
@@ -80,7 +75,6 @@ public class TaskList {
                 return 1;
             }
         }
-        //JSONObject obj = arrayTasks.getJSONObject(id-1);
         return 0;
     }
 
@@ -129,40 +123,50 @@ public class TaskList {
     public void list(String status){
         switch(status){
             case "all":
-                System.out.println(arrayTasks.toString());
-            /*
-                for(String l:lista){
-                    String[] parts = l.split("\\|");
-                    System.out.println(parts[1]);
+                for(int i = 0;i<arrayTasks.length();i++){
+                    JSONObject objTemp = arrayTasks.getJSONObject(i);
+                    System.out.println("Task "+ (i+1) + ":");
+                    for(String key: objTemp.keySet()){
+                        System.out.println(" " + key + ": " + objTemp.get(key));
+                    }
+                    System.out.println();
                 }
-            */
                 break;
             case "todo":
-                System.out.println("todo");
-                //for(String l:lista){
-                    //String[] parts = l.split("\\|");
-                    //if(parts[2].equals("0")){
-                    //    System.out.println(parts[1]);
-                    //}
-                //}
+                for(int i = 0;i<arrayTasks.length();i++){
+                    JSONObject objTemp = arrayTasks.getJSONObject(i);
+                    if(objTemp.getInt("status")==0){
+                        System.out.println("Task "+ (i+1) + ":");
+                        for(String key: objTemp.keySet()){
+                            System.out.println(" " + key + ": " + objTemp.get(key));
+                        }
+                        System.out.println();
+                    }
+                }
                 break;
             case "in-progress":
-                System.out.println("in-progress");
-                //for(String l:lista){
-                    //String[] parts = l.split("\\|");
-                    //if(parts[2].equals("1")){
-                    //    System.out.println(parts[1]);
-                    //}
-                //}
+                for(int i = 0;i<arrayTasks.length();i++){
+                    JSONObject objTemp = arrayTasks.getJSONObject(i);
+                    if(objTemp.getInt("status")==1){
+                        System.out.println("Task "+ (i+1) + ":");
+                        for(String key: objTemp.keySet()){
+                            System.out.println(" " + key + ": " + objTemp.get(key));
+                        }
+                        System.out.println();
+                    }
+                }
                 break; 
             case "done":
-                System.out.println("done");
-                //for(String l:lista){
-                    //String[] parts = l.split("\\|");
-                    //if(parts[2].equals("2")){
-                    //    System.out.println(parts[1]);
-                    //}
-                //}
+                for(int i = 0;i<arrayTasks.length();i++){
+                    JSONObject objTemp = arrayTasks.getJSONObject(i);
+                    if(objTemp.getInt("status")==2){
+                        System.out.println("Task "+ (i+1) + ":");
+                        for(String key: objTemp.keySet()){
+                            System.out.println(" " + key + ": " + objTemp.get(key));
+                        }
+                        System.out.println();
+                    }
+                }
                 break;
         }
     }
