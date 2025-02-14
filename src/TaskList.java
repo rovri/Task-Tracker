@@ -84,11 +84,19 @@ public class TaskList {
 
     public int markinprogress(int id){
         System.out.println("markinprogress");
+        JSONObject obj = arrayTasks.getJSONObject(id-1);
+        obj.put("status", 1);
+        arrayTasks.put(id, obj);
+        writeFile();
         return 1;
     }
 
     public int markdone(int id){
         System.out.println("markdone");
+        JSONObject obj = arrayTasks.getJSONObject(id-1);
+        obj.put("status", 2);
+        arrayTasks.put(id, obj);
+        writeFile();
         return 1;
     }
 
