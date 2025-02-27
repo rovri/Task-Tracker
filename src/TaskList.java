@@ -51,6 +51,7 @@ public class TaskList {
         taskNew.put("updatedAt", task.getUpdatedAt());
         arrayTasks.put(taskNew);
         writeFile();
+        System.out.println("Tarefa adicionada com sucesso (ID: " + task.getId() + ")");
         return 1;  
     }
 
